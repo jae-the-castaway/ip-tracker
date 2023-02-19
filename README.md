@@ -72,3 +72,4 @@ for mobile-friendly interactive maps
 ### Continued development
 - can i move the zoom button on another corner? if possible, I could put that button bottom-left
 - on Netlify, you can't use `http` and unluckily enough, for free IP-API pricing, I can't use `https` feature. I could either find another IP geolocation API with `https` option or find another hosting website that support `http`. but in my opinion, using `http` is unsafe anyway
+  => Thanks to this, [Stackoverflow](https://stackoverflow.com/questions/47939548/github-pages-website-is-on-https-but-rest-api-is-on-http), planned to change the http api call to https in the future
