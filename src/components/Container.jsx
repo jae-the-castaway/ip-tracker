@@ -2,8 +2,9 @@ import styled from 'styled-components'
 
 
 export default function Container({user, loading}) {
-    const { status, query, city, timezone, region, zip, isp} = user
+    const { message, ip, city, time_zone, district, zipcode, isp} = user
 //alert('wrong IP adress or Domain. try again')
+console.log(user)
     return (
     <>
     {user.status === 'fail' ?"" : null}
@@ -34,10 +35,10 @@ export default function Container({user, loading}) {
       <>
       {status === 'fail' 
       ? <p>wrong IP adress or Domain. try again</p>
-      :<><div><h3>IP ADRESS</h3><h2>{status === 'success'? query : '-' }</h2></div>
-        <div><h3>LOCATION</h3><h2>{status === 'success'? city + ',' + region +' '+ zip : '-' }</h2></div>
-        <div><h3>TIME ZONE</h3><h2>{status === 'success'? timezone : '-' }</h2></div>
-        <div><h3>PROVIDER</h3><h2>{status === 'success'? isp : '-' }</h2></div></>}</>
+      :<><div><h3>IP ADRESS</h3><h2>{ip}</h2></div>
+        <div><h3>LOCATION</h3><h2>{city + ',' + district +' '+ zipcode}</h2></div>
+        <div><h3>TIME ZONE</h3><h2>UTC/GMT {time_zone.offset}</h2></div>
+        <div><h3>PROVIDER</h3><h2>{isp}</h2></div></>}</>
     }
     </Flex>
         </StyledContainer>
@@ -71,6 +72,7 @@ padding: 20px 0;
     flex:1;
     padding: 5px 20px;
     min-width: 100px;
+    overflow-wrap: break-word
 }
 
 @media (min-width: 700px) {
