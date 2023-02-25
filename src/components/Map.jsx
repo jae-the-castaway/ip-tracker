@@ -1,36 +1,39 @@
-
-import styled from "styled-components"
-import { MapContainer, TileLayer, useMap, useMapEvents, Marker, Popup } from 'react-leaflet'
+import styled from "styled-components";
+import {
+  MapContainer,
+  TileLayer,
+  useMap,
+  useMapEvents,
+  Marker,
+  Popup,
+} from "react-leaflet";
 import { Icon } from "leaflet";
 
-export default function Map({user, loading, center }) {
-
-
+export default function Map({ user, loading, center }) {
   const icon = new Icon({
     iconUrl: "/icon-location.svg",
-    iconAnchor:   [12, 40],
+    iconAnchor: [12, 40],
   });
-  
-  function LocationMarker() {
-    const map = useMapEvents({})
-    map.flyTo(center, map.getZoom())
 
+  function LocationMarker() {
+    const map = useMapEvents({});
+    map.flyTo(center, map.getZoom());
   }
 
-    return (
-        <MyMap center={center} zoom={13} scrollWheelZoom={false}>
-  <TileLayer
-    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-  />
-  <Marker  icon={icon} position={center}>
-    <Popup>
-      A pretty CSS3 popup. <br /> Easily customizable.
-    </Popup>
-  </Marker>
-  <LocationMarker/>
-</MyMap>
-      )
+  return (
+    <MyMap center={center} zoom={13} scrollWheelZoom={false}>
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Marker icon={icon} position={center}>
+        <Popup>
+          {user.ip}
+        </Popup>
+      </Marker>
+      <LocationMarker />
+    </MyMap>
+  );
 }
 
 const MyMap = styled(MapContainer)`
@@ -54,6 +57,5 @@ const MyMap = styled(MapContainer)`
 
   @media (min-width: 700px) {
     transform: translateY(-90px);
-    
   }
-`
+`;
