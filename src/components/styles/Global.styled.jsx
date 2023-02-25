@@ -8,6 +8,6 @@ const Globalstyles = createGlobalStyle`
         text-align: center;
         background-color: #1c1d21;
     }
-`
+`;
 
-export default Globalstyles
+export default Globalstyles;

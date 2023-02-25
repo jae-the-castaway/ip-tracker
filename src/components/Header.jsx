@@ -10,7 +10,6 @@ const [adress, setAdress ] = useState('')
       }
       function handleSubmit() {
         fetchData(adress);
-        console.log(adress)
       }
 
     return (
@@ -18,7 +17,7 @@ const [adress, setAdress ] = useState('')
             <img src="/pattern-bg.png" alt="" />
             <h1>IP Adress Tracker</h1>
             <Flex>
-                <input  onChange={handleChange} type="text" placeholder='Search for any IP adress or domain'/>
+                <input  onChange={handleChange} type="text" placeholder='Search for any IP adress'/>
                 <input  onClick={handleSubmit} type="button" value='>' />
             </Flex>
         </StyledHeader>
