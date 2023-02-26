@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export default function Container({ user, loading, isError }) {
   const { message, ip, city, time_zone, district, zipcode, isp } = user;
-  //alert('wrong IP adress or Domain. try again')
-  // console.log(user)
   return (
     <>
       <StyledContainer>
