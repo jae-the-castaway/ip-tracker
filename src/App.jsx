@@ -31,7 +31,6 @@ function App() {
         setLoading(false);
         throw Error(response.statusText)
       }
-      // console.log(data)
     } catch (err) {
       console.log(err);
     }
