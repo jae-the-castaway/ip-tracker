@@ -27,9 +27,7 @@ export default function Map({ user, loading, center }) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker icon={icon} position={center}>
-        <Popup>
-          {user.ip}
-        </Popup>
+        <Popup>{user.ip}</Popup>
       </Marker>
       <LocationMarker />
     </MyMap>
@@ -39,6 +37,11 @@ export default function Map({ user, loading, center }) {
 const MyMap = styled(MapContainer)`
   font-size: 16px;
   font-weight: bold;
+
+  .leaflet-popup {
+    padding-bottom: 35px;
+    padding-left: 65px;
+  }
 
   p {
     font-size: 16px;
