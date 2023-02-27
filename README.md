@@ -1,6 +1,7 @@
-# Frontend Mentor - IP address tracker solution
 
-This is a solution to the [IP address tracker challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+<h1 align="center">Responsive IP address tracker</h1>
+
+![thumbnail-2](public/thumbnail2.png)
 
 ## Table of contents
 
@@ -21,17 +22,18 @@ Users should be able to:
 
 - View the optimal layout for each page depending on their device's screen size
 - See their location on the map on the initial page load
-- Search for any IP addresses or domains and see the key information and location
+- Search for any IP addresses and see the key information and location
 
 ### Screenshot
 
 ![thumbnail-1](public/thumbnail1.png)
-![thumbnail-2](public/thumbnail2.png)
+
 
 ### Links
 
 - Solution URL: [Frontend Mentor Solution link](https://github.com/jae-the-castaway/ip-tracker)
 - Live Site URL: [Netlify link](https://jae-the-castaway-ip-tracker.netlify.app)
+
 ## My process
 
 ### Built with
@@ -56,20 +58,36 @@ for mobile-friendly interactive maps
   const fetchData = async (adress) => {
     try {
       setLoading(true);
-      const response = await fetch(`http://ip-api.com/json/${adress?adress:""}`);
+      const response = await fetch(
+        `https://api.ipgeolocation.io/ipgeo?apiKey=${API_KEY}${
+          adress ? `&ip=${adress}` : ""
+        }`
+      );
       const data = await response.json();
-      setUser(data);
-      setLoading(false);
-      if ( data.status === 'success') {setCenter([data.lat, data.lon])}
-    } catch (err) { console.log('Error occured when fetching data');}}
+      if (response.ok) {
+        setError(false);
+        setUser(data);
+        setCenter([data.latitude, data.longitude]);
+        setLoading(false);
+      } else {
+        setError(true);
+        setLoading(false);
+        throw Error(response.statusText);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  useEffect(() => { fetchData();},[]);
+  useEffect(() => {
+    fetchData();
+  }, []);
 ```
-&ensp;there are many ways to fetch api data on React. I chose `try{}catch{}`and `async, await`because it didn't require importing extra components or library from outside and this project was simple enough to use
+&ensp;there are many ways to fetch api data on React. I chose `try{}catch{}`and `async, await`because it didn't require importing extra components or library from outside and this project was simple enough to use.
 <br>&ensp;on first load, with `useState`, set loading state to render loading bar on screen
 <br>&ensp;also it has a fallback for error when fetching data
 
 ### Continued development
 - can i move the zoom button on another corner? if possible, I could put that button bottom-left
-- on Netlify, you can't use `http` and unluckily enough, for free IP-API pricing, I can't use `https` feature. I could either find another IP geolocation API with `https` option or find another hosting website that support `http`. but in my opinion, using `http` is unsafe anyway
-  => Thanks to this, [Stackoverflow](https://stackoverflow.com/questions/47939548/github-pages-website-is-on-https-but-rest-api-is-on-http), planned to change the http api call to https in the future
+
+This is a solution to the [IP address tracker challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0)

@@ -9,7 +9,7 @@ function App() {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [center, setCenter] = useState([37.5665, 126.978]);
-  const [isError, setError] = useState(false)
+  const [isError, setError] = useState(false);
 
   const fetchData = async (adress) => {
     const API_KEY = "95a70f07da0e483a99d51f551bd35232";
@@ -22,14 +22,14 @@ function App() {
       );
       const data = await response.json();
       if (response.ok) {
-        setError(false)
+        setError(false);
         setUser(data);
         setCenter([data.latitude, data.longitude]);
         setLoading(false);
       } else {
-        setError(true)
+        setError(true);
         setLoading(false);
-        throw Error(response.statusText)
+        throw Error(response.statusText);
       }
     } catch (err) {
       console.log(err);
